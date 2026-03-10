@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="EdithMaxApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:EdithMaxApp"
+    TabBarBackgroundColor="#39B54A"
+    TabBarForegroundColor="White"
+    TabBarTitleColor="White"
+    TabBarUnselectedColor="#AAFFAA"
+    NavBarIsVisible="False">
+
+    <TabBar>
+        <Tab Title="Accueil">
+            <Tab.Icon>
+                <FontImageSource Glyph="&#x2302;" FontFamily="OpenSansRegular" Color="White" Size="20"/>
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate local:HomePage}" Route="HomePage" />
+        </Tab>
+        <Tab Title="Galerie">
+            <Tab.Icon>
+                <FontImageSource Glyph="&#x1F5BC;" FontFamily="OpenSansRegular" Color="White" Size="20"/>
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate local:GalleryPage}" Route="GalleryPage" />
+        </Tab>
+        <Tab Title="Ajout">
+            <Tab.Icon>
+                <FontImageSource Glyph="&#x2795;" FontFamily="OpenSansRegular" Color="White" Size="20"/>
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate local:FormAddPage}" Route="FormAddPage" />
+        </Tab>
+        <Tab Title="Bonus">
+            <Tab.Icon>
+                <FontImageSource Glyph="&#x2605;" FontFamily="OpenSansRegular" Color="White" Size="20"/>
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate local:BonusPage}" Route="BonusPage" />
+        </Tab>
+    </TabBar>
+
+</Shell>

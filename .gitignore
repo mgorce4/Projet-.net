@@ -1,0 +1,112 @@
+﻿# ===========================
+# .NET / C#
+# ===========================
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.vs/
+.vs/
+
+# ===========================
+# .NET MAUI / Xamarin
+# ===========================
+*.apk
+*.aab
+*.ipa
+*.app
+*.dSYM/
+*.dSYM.zip
+*.idsig
+android-x64/
+iossimulator-x64/
+maccatalyst-x64/
+win-x64/
+
+# ===========================
+# NuGet
+# ===========================
+*.nupkg
+*.snupkg
+project.lock.json
+project.fragment.lock.json
+artifacts/
+packages/
+!**/[Pp]ackages/build/
+
+# ===========================
+# Visual Studio / Rider
+# ===========================
+.idea/
+*.DotSettings.user
+*.resharper
+_ReSharper*/
+*.ReSharper
+*.sln.iml
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+*.VC.opendb
+ipch/
+*.aps
+*.ncb
+*.opendb
+*.sdf
+*.cachefile
+*.VC.db
+*.psess
+*.vsp
+*.vspx
+*.sap
+
+# ===========================
+# Logs & fichiers temporaires
+# ===========================
+*.log
+*.tmp
+*.temp
+[Tt]emp/
+[Ll]ogs/
+*.bak
+*.orig
+
+# ===========================
+# Système d'exploitation
+# ===========================
+# Windows
+Thumbs.db
+Thumbs.db:encdata
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Linux
+*~
+
+# ===========================
+# Clés & secrets
+# ===========================
+*.pfx
+*.p12
+*.key
+*.keystore
+google-services.json
+GoogleService-Info.plist
+appsettings.*.json
+!appsettings.json
+secrets.json
+
