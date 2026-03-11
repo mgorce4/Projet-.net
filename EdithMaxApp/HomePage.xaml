@@ -1,8 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EdithMaxApp.HomePage">
     <VerticalStackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-        <Label Text="Accueil" HorizontalOptions="Center" VerticalOptions="Center" FontSize="24" />
+        <Label Text="Welcome to Jurassic App!" HorizontalOptions="Center" VerticalOptions="Center"  FontSize="40" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+        <Label Text="Bon voyage!" HorizontalOptions="Center" VerticalOptions="Center" FontSize="28" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
     </VerticalStackLayout>
 </ContentPage>
