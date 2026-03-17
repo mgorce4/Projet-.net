@@ -16,6 +16,7 @@
                 <FontImageSource Glyph="&#x2302;" FontFamily="OpenSansRegular" Color="White" Size="20"/>
             </Tab.Icon>
             <ShellContent ContentTemplate="{DataTemplate local:HomePage}" Route="HomePage" />
+            <ShellContent ContentTemplate="{DataTemplate local:GifPage}" Route="GifPage" />
         </Tab>
         <Tab Title="Galerie">
             <Tab.Icon>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EdithMaxApp.GifPage">
+    <ContentPage.Content>
+        <VerticalStackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Spacing="24" Padding="24">
+            <Label Text="Voici un gif de dinosaure!" HorizontalOptions="Center" VerticalOptions="Center" FontSize="28" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            <WebView WidthRequest="300" HeightRequest="300" HorizontalOptions="Center" VerticalOptions="Center">
+                <WebView.Source>
+                    <HtmlWebViewSource Html="&lt;html&gt;&lt;body style='margin:0;padding:0;display:flex;justify-content:center;align-items:center;height:100vh;background:transparent;'&gt;&lt;img src='https://media.tenor.com/ov2jdLlImPQAAAAi/t-rex-dancing-with-sunglasses.gif' style='max-width:100%;max-height:100%;' /&gt;&lt;/body&gt;&lt;/html&gt;" />
+                </WebView.Source>
+            </WebView>
+            <Button Text="Retour à l'accueil" Clicked="OnBackToHomeClicked" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource DinoButtonStyle}" />
+        </VerticalStackLayout>
+    </ContentPage.Content>
+</ContentPage>

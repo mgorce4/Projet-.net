@@ -2,4 +2,11 @@
 <ResourceDictionary 
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Style x:Key="DinoButtonStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource DinoGreen}" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="CornerRadius" Value="16" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="Padding" Value="16,8" />
+    </Style>
 </ResourceDictionary>

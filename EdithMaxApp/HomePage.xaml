@@ -1,9 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EdithMaxApp.HomePage">
-    <VerticalStackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-        <Label Text="Welcome to Jurassic App!" HorizontalOptions="Center" VerticalOptions="Center"  FontSize="40" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-        <Label Text="Bon voyage!" HorizontalOptions="Center" VerticalOptions="Center" FontSize="28" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-    </VerticalStackLayout>
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="EdithMaxApp.HomePage"
+             Shell.NavBarIsVisible="False"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="Black">
+    <ScrollView>
+        <VerticalStackLayout VerticalOptions="Start" HorizontalOptions="CenterAndExpand" Spacing="24" Padding="0">
+            <Label Text="Welcome to Jurassic App!" HorizontalOptions="Center" VerticalOptions="Center"  FontSize="32" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            <Label Text="Bon voyage!" HorizontalOptions="Center" VerticalOptions="Center" FontSize="24" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+                <Image Source="triceratops.webp" WidthRequest="150" HeightRequest="150" HorizontalOptions="Center" VerticalOptions="Center" />
+                <Image Source="volant.webp" WidthRequest="150" HeightRequest="150" HorizontalOptions="Center" VerticalOptions="Center" />
+            </HorizontalStackLayout>
+            <Button Text="Découvrir les dinosaures!" HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnDiscoverDinosClicked" Style="{StaticResource DinoButtonStyle}" />
+            <toolkit:MediaElement x:Name="mediaElement" 
+                                 WidthRequest="400" 
+                                 HeightRequest="400" 
+                                 HorizontalOptions="Center"
+                                 BackgroundColor="Gray" />
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
