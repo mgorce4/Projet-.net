@@ -15,6 +15,7 @@ public partial class GifPage : ContentPage
 
     private async void OnBackToHomeClicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("..", true);
+        // Navigation Shell recommandée - utilise la route enregistrée
+        await Shell.Current.GoToAsync("homepage");
     }
 }

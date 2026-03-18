@@ -69,7 +69,8 @@ namespace EdithMaxApp
 
         private async void OnDiscoverDinosClicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("gif");
+            // Navigation vers GifPage en utilisant la route enregistrée
+            await Shell.Current.GoToAsync("gifpage");
         }
     }
 }
