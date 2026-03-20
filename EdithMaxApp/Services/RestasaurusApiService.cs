@@ -6,9 +6,10 @@ public class RestasaurusApiService
 {
     private readonly IRestasaurusApi _api;
 
-    public RestasaurusApiService()
+    public RestasaurusApiService(HttpClient httpClient)
     {
-        _api = RestClient.For<IRestasaurusApi>("https://restasaurus.herokuapp.com");
+        httpClient.BaseAddress = new Uri("https://restasaurus.herokuapp.com");
+        _api = RestService.For<IRestasaurusApi>(httpClient);
     }
 
     public async Task<DinosaurImageResponse?> GetRandomDinosaurImageAsync()

@@ -18,7 +18,12 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
 
-        builder.Services.AddSingleton<RestasaurusApiService>();
+        // Enregistrer HttpClient et le service Refit
+        builder.Services.AddScoped(_ => 
+        {
+            var httpClient = new HttpClient { BaseAddress = new Uri("https://restasaurus.herokuapp.com") };
+            return new RestasaurusApiService(httpClient);
+        });
 
 #if DEBUG
         builder.Logging.AddDebug();
