@@ -1,6 +1,9 @@
 ﻿using CommunityToolkit.Maui;
 using EdithMaxApp.Services;
 using Microsoft.Extensions.Logging;
+using Refit;
+using EdithMaxApp.ViewModels;
+using Newtonsoft.Json;
 
 namespace EdithMaxApp;
 
@@ -18,12 +21,25 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
 
+        builder.Services.AddTransient<DinosaurDetailsViewModel>();
+        builder.Services.AddTransient<GalleryViewModel>();
+        builder.Services.AddTransient<GalleryPage>();
+        builder.Services.AddTransient<DinosaurImageDetailViewModel>();
+        builder.Services.AddTransient<DinosaurImageDetailPage>();
+        builder.Services.AddTransient<LoggingHandler>();
+
         // Enregistrer HttpClient et le service Refit
-        builder.Services.AddScoped(_ => 
+        var refitSettings = new RefitSettings
         {
-            var httpClient = new HttpClient { BaseAddress = new Uri("https://restasaurus.herokuapp.com") };
-            return new RestasaurusApiService(httpClient);
-        });
+            ContentSerializer = new NewtonsoftJsonContentSerializer(
+                new JsonSerializerSettings
+                {
+                    ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver()
+                })
+        };
+        builder.Services.AddRefitClient<IRestasaurusApi>(refitSettings)
+            .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://restasaurus.onrender.com"))
+            .AddHttpMessageHandler<LoggingHandler>();
 
 #if DEBUG
         builder.Logging.AddDebug();

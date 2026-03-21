@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:EdithMaxApp.ViewModels"
+             x:DataType="viewModels:DinosaurImageDetailViewModel"
+             x:Class="EdithMaxApp.DinosaurImageDetailPage"
+             Title="Détail du dinosaure">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <Image Source="{Binding DinosaurImage.ImageURL}" Aspect="AspectFill" HeightRequest="250" />
+            <Label Text="{Binding DinosaurImage.Title}" FontSize="Large" FontAttributes="Bold" />
+            <Label Text="{Binding DinosaurImage.Description}" />
+            <Label Text="Auteur : {Binding DinosaurImage.Author}" FontAttributes="Italic" />
+            <Label Text="Licence : {Binding DinosaurImage.License}" FontAttributes="Italic" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
+

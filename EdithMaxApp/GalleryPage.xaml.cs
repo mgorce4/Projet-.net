@@ -1,12 +1,24 @@
-﻿using Microsoft.Maui.Controls;
+﻿using EdithMaxApp.ViewModels;
 
-namespace EdithMaxApp
+namespace EdithMaxApp;
+
+public partial class GalleryPage : ContentPage
 {
-    public partial class GalleryPage : ContentPage
+    public GalleryPage(GalleryViewModel viewModel)
     {
-        public GalleryPage()
+        InitializeComponent();
+        BindingContext = viewModel;
+    }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        
+        if (BindingContext is GalleryViewModel viewModel)
         {
-            InitializeComponent();
+            await viewModel.LoadImagesCommand.ExecuteAsync(null);
         }
     }
 }
+
+
