@@ -45,11 +45,7 @@ public partial class DinosaurDetailsViewModel : ObservableObject
         {
             IsLoading = true;
             ErrorMessage = null;
-            
-            Debug.WriteLine("\n═══════════════════════════════════════════════════════════════");
-            Debug.WriteLine($"🔍 CHARGEMENT DES DÉTAILS DU DINOSAURE (ID: {DinosaurId})");
-            Debug.WriteLine("═══════════════════════════════════════════════════════════════");
-            
+             
             var dinosaur = await _apiService.GetDinosaurByIdAsync(DinosaurId);
             Dinosaur = dinosaur;
             
@@ -65,7 +61,7 @@ public partial class DinosaurDetailsViewModel : ObservableObject
                 
                 if (dinosaur.Image != null)
                 {
-                    Debug.WriteLine($"├─ 📷 IMAGE:");
+                    Debug.WriteLine($"├─ IMAGE:");
                     Debug.WriteLine($"│  ├─ Titre: {dinosaur.Image.Title}");
                     Debug.WriteLine($"│  ├─ Description: {dinosaur.Image.Description}");
                     Debug.WriteLine($"│  ├─ URL Image: {dinosaur.Image.ImageURL}");
@@ -78,7 +74,7 @@ public partial class DinosaurDetailsViewModel : ObservableObject
         catch (Exception ex)
         {
             ErrorMessage = $"Erreur lors du chargement des détails: {ex.Message}";
-            Debug.WriteLine($"❌ ERREUR: {ex.Message}");
+            Debug.WriteLine($"ERREUR: {ex.Message}");
             Debug.WriteLine($"Stack Trace: {ex.StackTrace}");
         }
         finally
