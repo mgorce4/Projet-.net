@@ -1,25 +1,86 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EdithMaxApp.FormAddPage">
+             x:Class="EdithMaxApp.FormAddPage"
+             BackgroundColor="#1A1A1A">
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
             
-            <Label Text="Formulaire d'ajout" HorizontalOptions="Center" FontSize="24" FontAttributes="Bold" />
+            <Label Text="Formulaire d'ajout" HorizontalOptions="Center" FontSize="24" FontAttributes="Bold" TextColor="White" />
             
-            <Label Text="Titre" FontSize="16" FontAttributes="Bold" />
-            <Entry x:Name="TitreEntry" Placeholder="Entrez le titre" />
+      
+            <Label Text="Titre" FontSize="16" FontAttributes="Bold" TextColor="White" />
+            <Entry x:Name="TitreEntry" 
+                   Placeholder="Entrez le titre"
+                   Text="{Binding Titre}"
+                   BackgroundColor="#2A2A2A"
+                   TextColor="White"
+                   PlaceholderColor="#999999"/>
+            <Label Text="{Binding TitrErreur}" 
+                   TextColor="Red" 
+                   FontSize="12"
+                   Margin="0,-10,0,5"
+                   IsVisible="{Binding TitrErreur, Converter={StaticResource IsNotNullOrEmptyConverter}}" />
+ 
+            <Label Text="Description" FontSize="16" FontAttributes="Bold" TextColor="White" />
+            <Editor x:Name="DescriptionEditor" 
+                    Placeholder="Entrez la description" 
+                    HeightRequest="120"
+                    Text="{Binding Description}"
+                    BackgroundColor="#2A2A2A"
+                    TextColor="White"
+                    PlaceholderColor="#999999"/>
+            <Label Text="{Binding DescriptionErreur}" 
+                   TextColor="Red" 
+                   FontSize="12"
+                   Margin="0,-10,0,5"
+                   IsVisible="{Binding DescriptionErreur, Converter={StaticResource IsNotNullOrEmptyConverter}}" />
             
-            <Label Text="Description" FontSize="16" FontAttributes="Bold" />
-            <Editor x:Name="DescriptionEditor" Placeholder="Entrez la description" HeightRequest="120" />
+   
+            <Label Text="Image" FontSize="16" FontAttributes="Bold" TextColor="White" />
             
-            <Label Text="Image" FontSize="16" FontAttributes="Bold" />
+
+            <Frame BorderColor="#444444" CornerRadius="8" Padding="0" HasShadow="True" HeightRequest="250">
+                <Grid RowDefinitions="*" ColumnDefinitions="*" BackgroundColor="#2A2A2A" HeightRequest="250">
+                    <!-- Image s'affiche si EstImageSelectionnee = true -->
+                    <Image Source="{Binding ImageUri}" 
+                           Grid.Row="0" Grid.Column="0"
+                           Aspect="AspectFill" 
+                           IsVisible="{Binding EstImageSelectionnee}"/>
+                    
+                    <!-- Label s'affiche si EstImageSelectionnee = false -->
+                    <Label Text="Aucune image sélectionnée"
+                           Grid.Row="0" Grid.Column="0"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           Padding="20"
+                           TextColor="#999999"
+                           IsVisible="{Binding EstImageSelectionnee, Converter={StaticResource InvertedBoolConverter}}"/>
+                </Grid>
+            </Frame>
+            
+            
+            <Label Text="{Binding ImageErreur}" 
+                   TextColor="Red" 
+                   FontSize="12"
+                   Margin="0,-5,0,5"
+                   IsVisible="{Binding ImageErreur, Converter={StaticResource IsNotNullOrEmptyConverter}}" />
+            
+            <!-- Boutons image -->
             <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
-                <Button Text="Choisir une image de la galerie" Style="{StaticResource SmallerDinoButtonStyle}"/>
-                <Button Text="Prendre une photo" Style="{StaticResource SmallerDinoButtonStyle}"/>
+                <Button Text="Choisir une image de la galerie" 
+                        Style="{StaticResource SmallerDinoButtonStyle}"
+                        Command="{Binding ChoisirImageGalerieCommand}"/>
+                <Button Text="Prendre une photo" 
+                        Style="{StaticResource SmallerDinoButtonStyle}"
+                        Command="{Binding PrendrePhotoCommand}"/>
             </HorizontalStackLayout>
             
-            <Button Text="Sauvegarder" Style="{StaticResource DinoButtonStyle}" />
+           
+            <Button Text="Sauvegarder" 
+                    Style="{StaticResource DinoButtonStyle}"
+                    Command="{Binding SauvegarderCommand}"
+                    Margin="0,20,0,0" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

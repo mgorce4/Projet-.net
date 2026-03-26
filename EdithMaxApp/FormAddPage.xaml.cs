@@ -1,4 +1,5 @@
-﻿using Microsoft.Maui.Controls;
+﻿using EdithMaxApp.ViewModels;
+using Microsoft.Maui.Controls;
 
 namespace EdithMaxApp
 {
@@ -7,7 +8,10 @@ namespace EdithMaxApp
         public FormAddPage()
         {
             InitializeComponent();
+            BindingContext = new FormAddViewModel();
         }
     }
 }
+
+
 
