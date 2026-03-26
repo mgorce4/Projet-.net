@@ -33,9 +33,19 @@ public partial class GalleryViewModel : ObservableObject
             IsLoading = true;
             ErrorMessage = null;
 
+            DinosaurImages.Clear();
+
+            // D'abord, ajouter les dinosaures de la session (en tout premier)
+            var sessionDinosaurs = SessionDataService.Instance.SessionDinosaurs;
+            foreach (var dinosaur in sessionDinosaurs)
+            {
+                DinosaurImages.Add(new DinosaurImageItemViewModel(dinosaur));
+                Debug.WriteLine($"Image de session ajoutée: {dinosaur.Title}");
+            }
+
+            // Ensuite, charger les dinosaures de l'API
             var result = await _apiService.GetRandomImagesAsync(10);
             
-            DinosaurImages.Clear();
             if (result?.Data != null)
             {
                 foreach (var wrapper in result.Data)
@@ -43,17 +53,17 @@ public partial class GalleryViewModel : ObservableObject
                     if (wrapper?.Image != null)
                     {
                         DinosaurImages.Add(new DinosaurImageItemViewModel(wrapper.Image));
-                        Debug.WriteLine($"✅ Image ajoutée: {wrapper.Image.Title}");
+                        Debug.WriteLine($"Image API ajoutée: {wrapper.Image.Title}");
                     }
                 }
             }
 
-            Debug.WriteLine($"✅ Total: {DinosaurImages.Count} images chargées");
+            Debug.WriteLine($"Total: {DinosaurImages.Count} images chargées (session + API)");
         }
         catch (Exception ex)
         {
             ErrorMessage = $"Erreur: {ex.Message}";
-            Debug.WriteLine($"❌ ERREUR LoadImages: {ex.Message}\n{ex.StackTrace}");
+            Debug.WriteLine($"ERREUR LoadImages: {ex.Message}\n{ex.StackTrace}");
         }
         finally
         {
@@ -84,6 +94,6 @@ public partial class DinosaurImageItemViewModel : ObservableObject
     public void ToggleDescription()
     {
         IsDescriptionVisible = !IsDescriptionVisible;
-        Debug.WriteLine($"📝 Description toggle: {IsDescriptionVisible} pour {Image.Title}");
+        Debug.WriteLine($"wDescription toggle: {IsDescriptionVisible} pour {Image.Title}");
     }
 }

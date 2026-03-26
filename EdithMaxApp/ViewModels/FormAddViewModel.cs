@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Diagnostics;
+using EdithMaxApp.Services;
 
 namespace EdithMaxApp.ViewModels;
 
@@ -51,12 +52,12 @@ public partial class FormAddViewModel : ObservableObject
 
                 ImageUri = newFile;
                 EstImageSelectionnee = true;
-                Debug.WriteLine($"✅ Image sélectionnée: {ImageUri}");
+                Debug.WriteLine($"Image sélectionnée: {ImageUri}");
             }
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"❌ Erreur galerie: {ex.Message}");
+            Debug.WriteLine($"Erreur galerie: {ex.Message}");
             ImageErreur = "Erreur lors du choix de l'image";
         }
     }
@@ -72,7 +73,7 @@ public partial class FormAddViewModel : ObservableObject
             if (!MediaPicker.Default.IsCaptureSupported)
             {
                 ImageErreur = "Appareil photo non disponible";
-                Debug.WriteLine("❌ Appareil photo non disponible");
+                Debug.WriteLine("Appareil photo non disponible");
                 return;
             }
 
@@ -91,16 +92,16 @@ public partial class FormAddViewModel : ObservableObject
 
                 ImageUri = newFile;
                 EstImageSelectionnee = true;
-                Debug.WriteLine($"✅ Photo prise: {ImageUri}");
+                Debug.WriteLine($"Photo prise: {ImageUri}");
             }
             else
             {
-                Debug.WriteLine("❌ Photo annulée par l'utilisateur");
+                Debug.WriteLine("Photo annulée par l'utilisateur");
             }
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"❌ Erreur appareil photo: {ex.Message}");
+            Debug.WriteLine($"Erreur appareil photo: {ex.Message}");
             ImageErreur = "Erreur lors de la prise de photo";
         }
     }
@@ -139,9 +140,12 @@ public partial class FormAddViewModel : ObservableObject
         // Si tout est valide
         if (estValide)
         {
+            // Ajouter le dinosaure à la session
+            SessionDataService.Instance.AddDinosaur(Titre, Description, ImageUri);
+            
             await Application.Current?.MainPage?.DisplayAlert(
-                "✅ Succès",
-                $"Dinosaure ajouté!\n\nTitre: {Titre}\nDescription: {Description}\nImage: {ImageUri}",
+                "Bravo!",
+                $"Votre dinosaure a été ajouté!\n\nTitre: {Titre}\nDescription: {Description}",
                 "OK"
             );
 
