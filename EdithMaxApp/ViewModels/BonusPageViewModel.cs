@@ -15,6 +15,9 @@ public partial class BonusPageViewModel : ObservableObject
     private ObservableCollection<DinosaurImage> dinosaurImages = new();
 
     [ObservableProperty]
+    private DinosaurImage? randomDinosaur;
+
+    [ObservableProperty]
     private bool isLoading;
 
     [ObservableProperty]
@@ -51,6 +54,9 @@ public partial class BonusPageViewModel : ObservableObject
             }
 
             Debug.WriteLine($"Total: {DinosaurImages.Count} images chargées dans le carrousel");
+
+            // Charger aussi un dinosaure aléatoire
+            await LoadNewRandomDinosaur();
         }
         catch (Exception ex)
         {
@@ -60,6 +66,27 @@ public partial class BonusPageViewModel : ObservableObject
         finally
         {
             IsLoading = false;
+        }
+    }
+
+    [RelayCommand]
+    public async Task LoadNewRandomDinosaur()
+    {
+        try
+        {
+            // Charger 1 dinosaure aléatoire
+            var result = await _apiService.GetRandomImagesAsync(1);
+            
+            if (result?.Data?.FirstOrDefault()?.Image != null)
+            {
+                RandomDinosaur = result.Data.First().Image;
+                Debug.WriteLine($"Dinosaure aléatoire chargé: {RandomDinosaur.Title}");
+            }
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = $"Erreur lors du chargement du dinosaure aléatoire: {ex.Message}";
+            Debug.WriteLine($"ERREUR LoadNewRandomDinosaur: {ex.Message}\n{ex.StackTrace}");
         }
     }
 }

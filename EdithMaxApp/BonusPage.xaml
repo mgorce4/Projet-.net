@@ -6,17 +6,17 @@
              x:DataType="viewModels:BonusPageViewModel"
              x:Class="EdithMaxApp.BonusPage"
              Title="Bonus - Carrousel">
-    <Grid RowDefinitions="Auto, *, Auto" Padding="10" RowSpacing="10">
-        <!-- Titre -->
-        <Label Grid.Row="0"
-               Text="Carrousel de dinosaures"
-               FontSize="24"
-               FontAttributes="Bold"
-               HorizontalOptions="Center" />
+    <ScrollView>
+        <StackLayout Spacing="20" Padding="10">
+            <!-- Titre -->
+            <Label Text="Carrousel de dinosaures"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
 
-        <!-- CarouselView -->
-        <CarouselView Grid.Row="1" 
-                      ItemsSource="{Binding DinosaurImages}">
+            <!-- CarouselView -->
+            <CarouselView ItemsSource="{Binding DinosaurImages}"
+                          HeightRequest="400">
             <CarouselView.ItemTemplate>
                 <DataTemplate x:DataType="models:DinosaurImage">
                     <StackLayout>
@@ -53,11 +53,51 @@
         </CarouselView>
 
         <!-- ActivityIndicator -->
-        <ActivityIndicator Grid.Row="1" IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" HorizontalOptions="Center" VerticalOptions="Center" />
+        <ActivityIndicator IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" HorizontalOptions="Center" VerticalOptions="Center" />
 
         <!-- Erreur -->
-        <Label Grid.Row="2" Text="{Binding ErrorMessage}" IsVisible="{Binding ErrorMessage}" TextColor="Red" HorizontalOptions="Center" LineBreakMode="WordWrap" />
+        <Label Text="{Binding ErrorMessage}" IsVisible="{Binding ErrorMessage}" TextColor="Red" HorizontalOptions="Center" LineBreakMode="WordWrap" />
         
-    </Grid>
-    
+        <!-- Titre Dinosaure Aléatoire -->
+        <Label Text="Dinosaure Aléatoire"
+               FontSize="20"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+
+        <!-- Dinosaure Aléatoire Section -->
+        <StackLayout Spacing="15" Padding="10">
+            <!-- Image -->
+            <Frame BorderColor="DarkGray"
+                   CornerRadius="10"
+                   Padding="0"
+                   HorizontalOptions="Center"
+                   HasShadow="True">
+                <Image Source="{Binding RandomDinosaur.ImageURL}"
+                       Aspect="AspectFill"
+                       HeightRequest="200"
+                       WidthRequest="200"
+                       HorizontalOptions="Center" />
+            </Frame>
+
+            <!-- Titre -->
+            <Label Text="{Binding RandomDinosaur.Title}"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+
+            <!-- Description -->
+            <Label Text="{Binding RandomDinosaur.Description}"
+                   FontSize="12"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   LineBreakMode="WordWrap"
+                   MaxLines="4" />
+
+            <!-- Bouton Dé -->
+            <Button Command="{Binding LoadNewRandomDinosaurCommand}"
+                    Text="🎲"
+                    Style="{StaticResource DinoButtonStyle}"/>
+        </StackLayout>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>
