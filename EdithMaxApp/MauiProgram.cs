@@ -26,6 +26,8 @@ public static class MauiProgram
         builder.Services.AddTransient<GalleryPage>();
         builder.Services.AddTransient<DinosaurImageDetailViewModel>();
         builder.Services.AddTransient<DinosaurImageDetailPage>();
+        builder.Services.AddTransient<BonusPageViewModel>();
+        builder.Services.AddTransient<BonusPage>();
         builder.Services.AddTransient<LoggingHandler>();
 
         // Enregistrer HttpClient et le service Refit

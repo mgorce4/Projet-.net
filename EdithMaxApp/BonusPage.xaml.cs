@@ -1,13 +1,24 @@
-﻿using Microsoft.Maui.Controls;
+﻿using EdithMaxApp.ViewModels;
 
-namespace EdithMaxApp
+namespace EdithMaxApp;
+
+public partial class BonusPage : ContentPage
 {
-    public partial class BonusPage : ContentPage
+    public BonusPage(BonusPageViewModel viewModel)
     {
-        public BonusPage()
+        InitializeComponent();
+        BindingContext = viewModel;
+    }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        
+        if (BindingContext is BonusPageViewModel viewModel)
         {
-            InitializeComponent();
+            await viewModel.LoadRandomDinosaursCommand.ExecuteAsync(null);
         }
     }
 }
+
 
